@@ -1,56 +1,30 @@
-.welcome-header {
+.landing-page {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  height: 350px;
-  background: url("https://images.unsplash.com/photo-1519677584237-752f8853252e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80") fixed;
-  background-color: #FFE49B;
-  background-position: 0px -50px;
-  color: white;
-  background-size: cover;
-}
-
-.welcome-text {
-  background-color: rgba(0, 0, 0, 0.25);
-  padding: 20px 20px;
-  width: 300px;
-}
-
-.welcome-text > h3 {
-  font-size: 30px;
-  font-weight: 500;
-  width: 100%;
-  border-bottom: 1px solid;
-  margin-bottom: 10px;
-}
-
-#sign-in-btn {
-  font-size: 18px;
-  text-decoration: none;
-  padding: 20px 15px;
-  background-color: rgba(0, 0, 0, 0.25);
-  color: white;
-  border: none;
-}
-
-.demo-section {
-  display: flex;
-  align-items: center;
+  /* justify-content: center; */
   flex-direction: column;
-  justify-content: space-around;
-  padding: 20px 40px;
-  height: 500px;
-  background-color: rgba(49, 57, 60, 0.767);
-  color: #D8DBCE;
+  background: url("https://images.unsplash.com/photo-1535083252457-6080fe29be45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60") fixed;
+  background-size: auto;
+  height: 100vh;
+  color: white;
 }
 
-.demo-section > h3 {
-  font-size: 30px;
-  font-weight: 700;
+.logo {
+  margin-top: 200px;
 }
 
-.demo-placeholder {
-  width: 600px;
-  height: 350px;
-  background-color: black;
+.logo img {
+  width: 42px;
+  margin: 0 -5px -1px -5px;
 }
+
+.logo > h1 {
+  font-size: 50px;
+  font-weight: 800;
+  color: white;
+}
+
+.landing-page > a {
+  text-decoration: none;
+}
+
