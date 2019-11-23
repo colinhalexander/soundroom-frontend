@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Muli:400,400i,500,700,800&display=swap");
 .landing-page {
   display: flex;
   align-items: center;
@@ -6,22 +5,27 @@
   background: url("https://images.unsplash.com/photo-1535083252457-6080fe29be45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60") fixed;
   background-size: auto;
   height: 100vh;
-  color: white; }
+  color: white;
+}
 
 .logo {
-  margin-top: 150px; }
+  margin-top: 150px;
+}
 
 .logo > h1 {
   font-size: 50px;
   font-weight: 800;
-  color: white; }
+  color: white;
+}
 
 .logo img {
   width: 42px;
-  margin: 0 -5px -1px -5px; }
+  margin: 0 -5px -1px -5px;
+}
 
 .landing-page a {
-  color: white; }
+  color: white;
+}
 
 #sign-in-btn {
   display: flex;
@@ -31,16 +35,14 @@
   cursor: pointer;
   border: 1px solid;
   border-radius: 10px;
-  transition: all .3s; }
+  transition: all .3s;
+}
 
 #sign-in-btn > img {
   margin-left: 5px;
-  width: 80px; }
+  width: 80px;
+}
 
 #sign-in-btn:hover {
-  background-color: white; }
-
-.App {
-  font-family: 'Muli', sans-serif; }
-
-/*# sourceMappingURL=App.css.map */
+  background-color: white;
+}
