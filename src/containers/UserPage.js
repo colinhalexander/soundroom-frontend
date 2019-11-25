@@ -11,7 +11,6 @@ export default class UserPage extends Component {
       fetch(`http://localhost:3000/users/${spotifyID}`)
         .then(response => response.json())
         .then(profile => {
-          console.log(profile)
           profile.error
             ? this.props.history.push("/")
             : this.props.setUser(profile)
