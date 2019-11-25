@@ -3,8 +3,6 @@ import React from 'react'
 import speakerLogo from '../media/stereo-512-white.png'
 import spotifyLogo from '../media/Spotify_Logo_RGB_White.png'
 
-// import Footer from '../components/Footer'
-
 export default function LandingPage() {
 
   const signInWithSpotify = () => window.location.href = "http://localhost:3000/auth"
@@ -18,7 +16,6 @@ export default function LandingPage() {
       <div id="sign-in-btn" onClick={signInWithSpotify}>
         <p>Sign in with</p><img src={spotifyLogo} alt="spotify logo" />
       </div>
-      {/* <Footer /> */}
     </div>
   )
 }

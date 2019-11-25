@@ -1,0 +1,38 @@
+.user-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(#063d83, #efd3ae);
+  height: 100vh;
+  color: white;
+  font-size: 30px;
+  text-align: center; }
+
+.user-page a {
+  color: white; }
+
+#need-premium {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 5px 0;
+  font-size: 12px;
+  background-color: #d83232;
+  animation: banner .6s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+
+.user-page-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column; }
+
+.user-page img {
+  width: 60px; }
+
+@keyframes banner {
+  from {
+    top: -20px; }
+  to {
+    top: 0px; } }
+
+/*# sourceMappingURL=UserPage.css.map */
