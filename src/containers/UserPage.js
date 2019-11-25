@@ -20,23 +20,29 @@ export default class UserPage extends Component {
   }
 
   render() {
-    const user = this.props.user
-      ? this.props.user
-      : {}
+    const user = this.props.user || {}
 
     return (
       <div className="user-page">
         {
-          user.product !== "premium" && user.product !== null
-            ? <p id="need-premium">Oops! You need Spotify Premium to use this site. <a href="https://www.spotify.com/us/premium/" target="_blank" rel="noopener noreferrer" >Get Premium</a></p>
+          user.product !== "premium" && user.product
+            ? <p id="need-premium">
+                Oops! You need Spotify Premium to use this site. <a 
+                  href="https://www.spotify.com/us/premium/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Get Premium
+                </a>
+              </p>
             : ""
         }
-        <div className="user-page-content">
-          <h3>{user.display_name}</h3>
+        <div className="user-identity">
           <img src={user.images ? user.images[0].url : ""} alt="avatar" />
-          <button>Create a SoundRoom</button>
-          <button>See Invites</button>
+          <h3>{user.display_name}</h3>
         </div>
+        <button>Create a SoundRoom</button>
+        <button>See Invites</button>
       </div>
     )
   }
