@@ -29,7 +29,7 @@
   align-items: center;
   position: relative;
   bottom: 10%;
-  animation: fade-in 1.5s; }
+  animation: fade-in 2s; }
 
 .user-page h3 {
   font-weight: 600;
@@ -51,20 +51,23 @@
   transition: all .3s;
   color: white;
   font-size: 15px;
-  animation: fade-in 1.5s; }
+  animation: fade-in 2s; }
 
 .user-page button:hover {
   background-color: rgba(255, 255, 255, 0.05); }
 
-@keyframes banner {
-  from {
-    top: -20px; }
-  to {
-    top: 0px; } }
-@keyframes fade-in {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
+.new-soundroom-form * {
+  font-size: 20px;
+  animation: fade-in 1s; }
+
+.new-soundroom-form > input {
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-bottom: 1px solid; }
+
+.new-soundroom-form > input:focus {
+  outline: none;
+  box-shadow: transparent; }
 
 /*# sourceMappingURL=UserPage.css.map */

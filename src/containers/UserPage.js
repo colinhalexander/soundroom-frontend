@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 
 import '../stylesheets/UserPage.css'
+import NewSoundRoomForm from '../components/NewSoundRoomForm'
 
 export default class UserPage extends Component {
+
+  state = {
+    showForm: false
+  }
 
   componentDidMount() {
     const { spotifyID } = this.props.match.params
@@ -18,6 +23,12 @@ export default class UserPage extends Component {
     }
   }
 
+  toggleForm = () => {
+    this.setState(prevState => {
+      return {showForm: !prevState.showForm}
+    })
+  }
+
   render() {
     const user = this.props.user || {}
 
@@ -30,18 +41,25 @@ export default class UserPage extends Component {
                   href="https://www.spotify.com/us/premium/"
                   target="_blank"
                   rel="noopener noreferrer"
-                >
-                  Get Premium
-                </a>
+                >Get Premium</a>
               </p>
             : ""
         }
-        <div className="user-identity">
-          <img src={user.images ? user.images[0].url : ""} alt="avatar" />
-          <h3>{user.display_name}</h3>
-        </div>
-        <button>Create a SoundRoom</button>
-        <button>See Invites</button>
+        {
+          this.state.showForm
+            ? ""
+            : <div className="user-identity">
+                <img src={user.images ? user.images[0].url : ""} alt="avatar" />
+                <h3>{user.display_name}</h3>
+              </div>
+        }
+        {this.state.showForm ? <NewSoundRoomForm /> : ""}
+        <button onClick={this.toggleForm}>Create a SoundRoom</button>
+        {
+          this.state.showForm
+            ? ""
+            :<button>See Invites</button>
+        }
       </div>
     )
   }
