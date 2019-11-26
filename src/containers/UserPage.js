@@ -50,24 +50,16 @@ export default class UserPage extends Component {
     return (
       <div className="user-page">
         { needsPremium ? this.displayBanner() : "" }
-        {
-          showForm
-            ? ""
-            : <div className="user-identity">
-                <img src={user.images ? user.images[0].url : ""} alt="avatar" />
-                <h3>{user.display_name}</h3>
-              </div>
-        }
-        { showForm ? <NewSoundRoomForm id={user.id} /> : "" }
-        {
-          showForm
-            ? ""
-            : <button onClick={this.toggleForm}>Create a SoundRoom</button>
-        }
-        {
-          showForm
-            ? <button onClick={this.toggleForm}>Back</button>
-            : <button>See Invites</button>
+        { showForm 
+            ? <NewSoundRoomForm id={user.id} toggleForm={this.toggleForm} /> 
+            : <>
+                <div className="user-identity">
+                  <img src={user.images ? user.images[0].url : ""} alt="avatar" />
+                  <h3>{user.display_name}</h3>
+                </div>
+                <button onClick={this.toggleForm}>Create a SoundRoom</button>
+                <button>See Invites</button>
+              </>
         }
       </div>
     )

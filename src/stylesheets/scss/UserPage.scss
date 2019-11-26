@@ -30,7 +30,6 @@
 .user-identity {
   display: flex;
   align-items: center;
-  // position: relative;
   margin-bottom: 10vh;
   animation: fade-in 2s;
 }
@@ -76,7 +75,7 @@
 
 .user-page input {
   margin-bottom: 10vh;
-  width: 100%;
+  width: fit-content;
   max-width: 70vw;
   margin-top: 10px;
   font-size: 24px;
@@ -112,5 +111,28 @@
 @media only screen and (min-width: 900px) {
   .user-page input {
     max-width: 620px;
+  }
+}
+
+@media only screen and (min-width: 1140px) {
+  .user-page h3 {
+    font-weight: 600;
+    font-size: 34px;
+  }
+  
+  .user-page img {
+    width: 50px;
+  }
+
+  .user-page button {
+    font-size: 18px;
+  }
+
+  .user-page label {
+    font-size: 30px;
+  }
+
+  .user-page input {
+    font-size: 34px;
   }
 }
