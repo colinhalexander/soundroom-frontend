@@ -30,8 +30,8 @@
 .user-identity {
   display: flex;
   align-items: center;
-  position: relative;
-  bottom: 10%;
+  // position: relative;
+  margin-bottom: 10vh;
   animation: fade-in 2s;
 }
 
@@ -70,15 +70,12 @@
 }
 
 .user-page label {
-  position: relative;
-  bottom: 10%;
   font-size: 20px;
-  animation: fade-in 1s;
+  animation: fade-in 2s;
 }
 
 .user-page input {
-  position: relative;
-  bottom: 10%;
+  margin-bottom: 10vh;
   width: 100%;
   max-width: 70vw;
   margin-top: 10px;
@@ -89,7 +86,7 @@
   border: none;
   border-bottom: 1px solid;
   transition: all 1s;
-  animation: expand 1s;
+  animation: expand 1.3s;
 }
 
 .user-page input:focus {
@@ -114,6 +111,6 @@
 
 @media only screen and (min-width: 900px) {
   .user-page input {
-    max-width: 40vw;
+    max-width: 620px;
   }
 }

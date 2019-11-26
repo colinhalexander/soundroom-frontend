@@ -6,7 +6,8 @@ import NewSoundRoomForm from '../components/NewSoundRoomForm'
 export default class UserPage extends Component {
 
   state = {
-    showForm: false
+    showForm: false,
+    name: ""
   }
 
   componentDidMount() {
@@ -20,21 +21,6 @@ export default class UserPage extends Component {
             ? this.props.history.push("/")
             : this.props.setUser(profile)
         })
-    }
-  }
-
-  createNewSoundroom = (name) => {
-    const { user } = this.props
-    const request = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        name,
-        owner_id: user.spotify_id
-      })
     }
   }
 
@@ -72,10 +58,10 @@ export default class UserPage extends Component {
                 <h3>{user.display_name}</h3>
               </div>
         }
-        { showForm ? <NewSoundRoomForm /> : "" }
+        { showForm ? <NewSoundRoomForm id={user.id} /> : "" }
         {
           showForm
-            ? <button>Create SoundRoom</button>
+            ? ""
             : <button onClick={this.toggleForm}>Create a SoundRoom</button>
         }
         {
