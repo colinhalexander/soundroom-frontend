@@ -23,42 +23,65 @@ export default class UserPage extends Component {
     }
   }
 
+  createNewSoundroom = (name) => {
+    const { user } = this.props
+    const request = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        name,
+        owner_id: user.spotify_id
+      })
+    }
+  }
+
   toggleForm = () => {
     this.setState(prevState => {
       return {showForm: !prevState.showForm}
     })
   }
 
+  displayBanner = () => {
+    return (
+      <p id="need-premium">
+        Oops! You need Spotify Premium to use this site. <a 
+          href="https://www.spotify.com/us/premium/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Get Premium</a>
+      </p>
+    )
+  }
+
   render() {
     const user = this.props.user || {}
+    const needsPremium = user.product !== "premium" && user.product
+    const { showForm } = this.state
 
     return (
       <div className="user-page">
+        { needsPremium ? this.displayBanner() : "" }
         {
-          user.product !== "premium" && user.product
-            ? <p id="need-premium">
-                Oops! You need Spotify Premium to use this site. <a 
-                  href="https://www.spotify.com/us/premium/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >Get Premium</a>
-              </p>
-            : ""
-        }
-        {
-          this.state.showForm
+          showForm
             ? ""
             : <div className="user-identity">
                 <img src={user.images ? user.images[0].url : ""} alt="avatar" />
                 <h3>{user.display_name}</h3>
               </div>
         }
-        {this.state.showForm ? <NewSoundRoomForm /> : ""}
-        <button onClick={this.toggleForm}>Create a SoundRoom</button>
+        { showForm ? <NewSoundRoomForm /> : "" }
         {
-          this.state.showForm
-            ? ""
-            :<button>See Invites</button>
+          showForm
+            ? <button>Create SoundRoom</button>
+            : <button onClick={this.toggleForm}>Create a SoundRoom</button>
+        }
+        {
+          showForm
+            ? <button onClick={this.toggleForm}>Back</button>
+            : <button>See Invites</button>
         }
       </div>
     )

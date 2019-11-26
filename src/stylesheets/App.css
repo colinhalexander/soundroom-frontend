@@ -87,7 +87,8 @@
   background: linear-gradient(#1d8dd5, #907f75);
   height: 100vh;
   color: white;
-  text-align: center; }
+  text-align: center;
+  font-size: 15px; }
 
 .user-page a {
   color: white; }
@@ -96,14 +97,11 @@
   position: absolute;
   top: 0;
   width: 100%;
-  padding: 5px 0;
+  padding: 7px 0;
   font-size: 12px;
   background-color: #d83232;
   animation: banner .6s;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
-
-.user-page > * {
-  margin: 10px 0; }
 
 .user-identity {
   display: flex;
@@ -132,25 +130,53 @@
   transition: all .3s;
   color: white;
   font-size: 15px;
-  animation: fade-in 2s; }
+  animation: fade-in 2s;
+  margin: 8px 0; }
 
 .user-page button:hover {
   background-color: rgba(255, 255, 255, 0.05); }
 
-.new-soundroom-form * {
+.user-page button:focus {
+  outline: none; }
+
+.user-page label {
+  position: relative;
+  bottom: 10%;
   font-size: 20px;
   animation: fade-in 1s; }
 
-.new-soundroom-form > input {
+.user-page input {
+  position: relative;
+  bottom: 10%;
+  width: 100%;
+  max-width: 70vw;
+  margin-top: 10px;
+  font-size: 24px;
+  text-align: center;
   background-color: transparent;
   color: white;
   border: none;
-  border-bottom: 1px solid; }
+  border-bottom: 1px solid;
+  transition: all 1s;
+  animation: expand 1s; }
 
-.new-soundroom-form > input:focus {
+.user-page input:focus {
   outline: none;
   box-shadow: transparent; }
 
+.user-page p {
+  text-decoration: underline;
+  font-size: 12px; }
+
+@media only screen and (min-width: 420px) {
+  .user-page label {
+    font-size: 26px; }
+
+  .user-page input {
+    font-size: 30px; } }
+@media only screen and (min-width: 900px) {
+  .user-page input {
+    max-width: 40vw; } }
 @keyframes banner {
   from {
     top: -20px; }
@@ -166,5 +192,10 @@
     opacity: 1; }
   to {
     opacity: 0; } }
+@keyframes expand {
+  from {
+    transform: scaleX(0); }
+  to {
+    transform: scaleX(1); } }
 
 /*# sourceMappingURL=App.css.map */
