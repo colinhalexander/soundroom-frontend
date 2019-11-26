@@ -14,7 +14,7 @@ export default class NewSoundRoomForm extends Component {
 
   createSoundRoom = () => {
     if (this.state.name) {
-      const { id } = this.props,
+      const { id, history } = this.props,
             request = {
               method: 'POST',
               headers: {
@@ -30,9 +30,16 @@ export default class NewSoundRoomForm extends Component {
       fetch("http://localhost:3000/soundrooms", request)
         .then(response => response.json())
         .then(response => {
-          console.log("new soundroom response:", response)
-
+          history.push(`/soundroom/${toKebabCase(response.name)}`, {
+            soundroom: response
+          })
         })
+    }
+  }
+
+  handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      this.createSoundRoom()
     }
   }
   
@@ -40,10 +47,19 @@ export default class NewSoundRoomForm extends Component {
     return (
       <>
         <label>Name: </label>
-        <input value={this.state.name} onChange={this.handleChange} autoFocus />
+        <input
+          autoFocus
+          value={this.state.name}
+          onChange={this.handleChange}
+          onKeyPress={this.handleKeyPress}
+        />
         <button onClick={this.createSoundRoom}>Create SoundRoom</button>
         <button onClick={this.props.toggleForm}>Back</button>
       </>
     )
   }
+}
+
+function toKebabCase(string) {
+  return string.toLowerCase().split(' ').join('-')
 }

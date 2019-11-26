@@ -43,15 +43,20 @@ export default class UserPage extends Component {
   }
 
   render() {
+    const { showForm } = this.state
+    const { history } = this.props
     const user = this.props.user || {}
     const needsPremium = user.product !== "premium" && user.product
-    const { showForm } = this.state
 
     return (
-      <div className="user-page">
+      <section className="user-page">
         { needsPremium ? this.displayBanner() : "" }
         { showForm 
-            ? <NewSoundRoomForm id={user.id} toggleForm={this.toggleForm} /> 
+            ? <NewSoundRoomForm
+                id={user.id}
+                toggleForm={this.toggleForm}
+                history={history}
+              /> 
             : <>
                 <div className="user-identity">
                   <img src={user.images ? user.images[0].url : ""} alt="avatar" />
@@ -61,7 +66,7 @@ export default class UserPage extends Component {
                 <button>See Invites</button>
               </>
         }
-      </div>
+      </section>
     )
   }
 }

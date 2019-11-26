@@ -10,7 +10,7 @@ export default function LandingPage() {
   const signInWithSpotify = () => window.location.href = "http://localhost:3000/auth"
 
   return (
-    <div className="landing-page">
+    <section className="landing-page">
       <hgroup className="logo">
         <h1>SoundR<img src={speakerLogo} alt=""/><img src={speakerLogo} alt=""/>m</h1>
       </hgroup>
@@ -18,6 +18,6 @@ export default function LandingPage() {
       <div id="sign-in-btn" onClick={signInWithSpotify}>
         <p>Sign in with</p><img src={spotifyLogo} alt="spotify logo" />
       </div>
-    </div>
+    </section>
   )
 }

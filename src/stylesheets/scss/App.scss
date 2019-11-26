@@ -4,7 +4,12 @@
   font-family: 'Muli', sans-serif;
 }
 
-@import 'LandingPage.scss';
-@import 'UserPage.scss';
+// pages
+@import 'LandingPage';
+@import 'UserPage';
+@import 'SoundRoom';
+
+// partials
 @import 'animations';
 @import 'colors';
+@import 'mixins';

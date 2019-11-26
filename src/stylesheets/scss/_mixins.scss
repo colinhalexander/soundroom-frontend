@@ -1,0 +1,11 @@
+@mixin default-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: linear-gradient($sea-green-base, $dim-gray-light-2);
+  height: 100vh;
+  color: white;
+  text-align: center;
+  font-size: 15px;
+}
