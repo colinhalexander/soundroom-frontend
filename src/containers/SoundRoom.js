@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import encryptor from '../utilities/encryptor'
 
 export default class SoundRoom extends Component {
 
@@ -24,6 +25,8 @@ export default class SoundRoom extends Component {
       this.setState({ soundroom })
     }
 
+    // get and display currently playing track
+
     // create new playlist for user, named after soundroom
   }
 
@@ -31,19 +34,25 @@ export default class SoundRoom extends Component {
     const { Spotify } = window,
           player = new Spotify.Player({
             name: "Soundroom",
-            getOAuthToken: (callback) => {
-              const token = null // get token? or do on backend?
-              callback(token)
+            getOAuthToken: async (callback) => {
+              const accessToken = await fetch(`http://localhost:3000/user/${this.props.user.id}/token`)
+                .then(response => response.json())
+
+              callback(encryptor.decrypt(accessToken))
             }
           })
   
     this.setState({ playerID: player._options.id })
-    // player
+
+    player.connect().then((success) => {
+      if (!success) {
+        alert("Unable to connect to Spotify Player")
+      }
+    })
   }
 
   render() {
-    const { soundroom, playerID } = this.state
-    console.log(playerID)
+    const { soundroom } = this.state
 
     return (
       <section className="soundroom">

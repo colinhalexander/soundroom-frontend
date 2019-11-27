@@ -25,9 +25,11 @@ export default class UserPage extends Component {
   }
 
   toggleForm = () => {
-    this.setState(prevState => {
-      return {showForm: !prevState.showForm}
-    })
+    if (this.props.user && this.props.user.product === "premium") {
+      this.setState(prevState => {
+        return {showForm: !prevState.showForm}
+      })
+    }
   }
 
   displayBanner = () => {
