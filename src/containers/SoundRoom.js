@@ -8,7 +8,8 @@ export default class SoundRoom extends Component {
       id: 4,
       name: "Christmas Party 2019",
       owner_id: "1225479589"
-    }
+    },
+    showPlayer: true
   }
 
   componentDidMount() {
@@ -18,6 +19,10 @@ export default class SoundRoom extends Component {
     }
 
     // create new playlist for user, named after soundroom
+  }
+
+  toggleShowPlayer = () => {
+    this.setState(prevState => { return { showPlayer: !prevState.showPlayer } } )
   }
 
   render() {

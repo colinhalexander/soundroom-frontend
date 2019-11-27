@@ -17,3 +17,9 @@
   from { transform: scaleX(0) }
   to { transform: scaleX(1) }
 }
+
+// @keyframes spin {
+//   0% { transform: rotate(0deg) }
+//   75% { transform: rotate(360deg) }
+//   100% { transform: rotate(360deg) }
+// }

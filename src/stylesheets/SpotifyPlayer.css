@@ -10,9 +10,29 @@
   font-weight: bold;
   margin-bottom: 5px; }
 
-.spotify-player img {
+.spotify-player > img {
   width: 180px;
   margin-bottom: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.616); }
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35); }
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row nowrap;
+  margin-top: 20px; }
+
+.player-controls > .previous, .player-controls > .next {
+  width: 25px; }
+
+.player-controls > .play, .player-controls > .pause {
+  width: 50px; }
+
+.player-controls > .btn {
+  transition: all .3s; }
+
+.player-controls > .btn:hover {
+  transform: scale(1.05);
+  cursor: pointer; }
 
 /*# sourceMappingURL=SpotifyPlayer.css.map */

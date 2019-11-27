@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import encryptor from '../utilities/encryptor'
+import PlayerControls from './PlayerControls';
 
 export default class SpotifyPlayer extends Component {
 
   state = {
     player: null,
+    isPlaying: false,
     currentTrack: null
   }
 
@@ -59,18 +61,19 @@ export default class SpotifyPlayer extends Component {
       fetch("https://api.spotify.com/v1/me/player", request)
         .then(response => response.json())
         .then(response => {
-          this.setState({ currentTrack: response.item })
+          const { item, is_playing } = response
+          this.setState({
+            currentTrack: item,
+            isPlaying: is_playing
+          })
         })
+        .catch(error => console.log(error)) // for dev
     })
   }
 
-  artistsString = () => {
-    const { artists } = this.state.currentTrack
-    return makeListFromArray( artists.map(artist => artist.name) )
-  }
-
   render() {
-    const { album, name } = this.state.currentTrack || {}
+    const { player, isPlaying, currentTrack } = this.state
+    const { album, artists, name } = currentTrack || {}
 
     return (
       <div className="spotify-player">
@@ -80,7 +83,8 @@ export default class SpotifyPlayer extends Component {
             : <>
                 <img src={album.images[0].url} alt="album art" />
                 <h4>{name}</h4>
-                <p>{this.artistsString()}</p>
+                <p>{makeListFromArray( artists.map(artist => artist.name) )}</p>
+                <PlayerControls player={player} isPlaying={isPlaying} triggerUpdate={this.getCurrentTrack} />
               </>
         }
       </div>
@@ -88,6 +92,7 @@ export default class SpotifyPlayer extends Component {
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////
 function makeListFromArray(strings) {
   if (strings.length === 1) return strings[0]
   if (strings.length === 2) return strings.join(' and ')
