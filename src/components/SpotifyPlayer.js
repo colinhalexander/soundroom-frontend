@@ -30,23 +30,25 @@ export default class SpotifyPlayer extends Component {
             }
           })
   
-    this.setState({ player })
-    this.connectPlayer(player)
+    this.setState({ player }, () => {
+      this.connectPlayer()
+    })
   }
 
-  connectPlayer = (player) => {
+  connectPlayer = () => {
+    const { player } = this.state
     player.connect()
       .then(success => {
         if (!success) {
           alert("Unable to connect to Spotify Player")
         } else {
-          this.getCurrentTrack(player)
+          this.getCurrentTrack()
         }
       })
   }
 
-  getCurrentTrack = (player) => {
-    player._options.getOAuthToken(accessToken => {
+  getCurrentTrack = () => {
+    this.state.player._options.getOAuthToken(accessToken => {
       const request = {
         method: "GET",
         headers: {
@@ -57,25 +59,30 @@ export default class SpotifyPlayer extends Component {
       fetch("https://api.spotify.com/v1/me/player", request)
         .then(response => response.json())
         .then(response => {
-          console.log("currently playing:", response)
           this.setState({ currentTrack: response.item })
         })
     })
   }
 
-  // artistsString = () => {
-  //   return makeListFromArray( artists.map(artist => artist.name) )
-  // }
+  artistsString = () => {
+    const { artists } = this.state.currentTrack
+    return makeListFromArray( artists.map(artist => artist.name) )
+  }
 
   render() {
-    // const {}
+    const { album, name } = this.state.currentTrack || {}
 
     return (
       <div className="spotify-player">
-        <p>Spotify Player Here</p>
-        {/* <img src={album.images[0].url} alt="album art" /> */}
-        {/* <h4>{name}</h4> */}
-        {/* <p>{artistsString}</p> */}
+        {
+          !this.state.currentTrack
+            ? <p>Loading Current Track...</p>
+            : <>
+                <img src={album.images[0].url} alt="album art" />
+                <h4>{name}</h4>
+                <p>{this.artistsString()}</p>
+              </>
+        }
       </div>
     )
   }

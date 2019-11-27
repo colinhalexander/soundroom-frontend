@@ -200,6 +200,29 @@
   text-align: center;
   font-size: 15px; }
 
+.soundroom h2 {
+  font-size: 28px;
+  font-weight: 700;
+  position: absolute;
+  top: 5vh; }
+
+.spotify-player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center; }
+
+.spotify-player h4 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px; }
+
+.spotify-player img {
+  width: 180px;
+  margin-bottom: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.616); }
+
 @keyframes banner {
   from {
     top: -20px; }

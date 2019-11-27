@@ -4,7 +4,6 @@ import SpotifyPlayer from '../components/SpotifyPlayer';
 export default class SoundRoom extends Component {
 
   state = {
-    playerID: null,
     soundroom: {
       id: 4,
       name: "Christmas Party 2019",
@@ -27,7 +26,7 @@ export default class SoundRoom extends Component {
 
     return (
       <section className="soundroom">
-        <p>{soundroom.name}</p>
+        <h2>{soundroom.name}</h2>
         <SpotifyPlayer user={user} playerReady={playerReady} />
       </section>
     )
