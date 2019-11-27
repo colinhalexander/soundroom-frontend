@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import encryptor from '../utilities/encryptor'
+import SpotifyPlayer from '../components/SpotifyPlayer';
 
 export default class SoundRoom extends Component {
 
@@ -13,12 +14,13 @@ export default class SoundRoom extends Component {
   }
 
   componentDidMount() {
-    const isPlayerReady = setInterval(() => {
-      if (this.props.playerReady) {
-        this.initializePlayer()
-        clearInterval(isPlayerReady)
-      }
-    }, 1000);
+    const { playerReady, user } = this.props,
+          isPlayerReady = setInterval(() => {
+            if (playerReady && user) {
+              this.initializePlayer()
+              clearInterval(isPlayerReady)
+            }
+          }, 1000);
 
     const { soundroom } = this.props.location.state
     if (soundroom) {
@@ -35,7 +37,7 @@ export default class SoundRoom extends Component {
           player = new Spotify.Player({
             name: "Soundroom",
             getOAuthToken: async (callback) => {
-              const accessToken = await fetch(`http://localhost:3000/user/${this.props.user.id}/token`)
+              const accessToken = await fetch(`http://localhost:3000/users/${this.props.user.id}/token`)
                 .then(response => response.json())
 
               callback(encryptor.decrypt(accessToken))
@@ -57,6 +59,7 @@ export default class SoundRoom extends Component {
     return (
       <section className="soundroom">
         <p>{soundroom.name}</p>
+        <SpotifyPlayer  />
       </section>
     )
   }
