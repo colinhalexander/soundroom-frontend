@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import encryptor from '../utilities/encryptor'
-import PlayerControls from './PlayerControls';
+import PlayerControls from './PlayerControls'
 
 export default class SpotifyPlayer extends Component {
 
@@ -17,7 +17,7 @@ export default class SpotifyPlayer extends Component {
               this.initializePlayer()
               clearInterval(isPlayerReady)
             }
-          }, 1000);
+          }, 1000)
   }
 
   initializePlayer = () => {
@@ -67,7 +67,9 @@ export default class SpotifyPlayer extends Component {
             isPlaying: is_playing
           })
         })
-        .catch(error => console.log(error)) // for dev
+        .catch(() => {
+          this.props.toggleShowPlayer()
+        })
     })
   }
 
@@ -81,9 +83,13 @@ export default class SpotifyPlayer extends Component {
           !this.state.currentTrack
             ? <p>Loading Current Track...</p>
             : <>
-                <img src={album.images[0].url} alt="album art" />
-                <h4>{name}</h4>
-                <p>{makeListFromArray( artists.map(artist => artist.name) )}</p>
+                <div className="song-info">
+                  <img src={album.images[0].url} alt="album art" />
+                  <div className="song-title-artist">
+                    <h4>{name}</h4>
+                    <p>{makeListFromArray( artists.map(artist => artist.name) )}</p>
+                  </div>
+                </div>
                 <PlayerControls player={player} isPlaying={isPlaying} triggerUpdate={this.getCurrentTrack} />
               </>
         }

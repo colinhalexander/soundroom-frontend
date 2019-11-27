@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SpotifyPlayer from '../components/SpotifyPlayer';
+import SpotifyPlayer from '../components/SpotifyPlayer'
 
 export default class SoundRoom extends Component {
 
@@ -26,13 +26,20 @@ export default class SoundRoom extends Component {
   }
 
   render() {
-    const { soundroom } = this.state
+    const { soundroom, showPlayer } = this.state
     const { user, playerReady } = this.props
 
     return (
       <section className="soundroom">
         <h2>{soundroom.name}</h2>
-        <SpotifyPlayer user={user} playerReady={playerReady} />
+        { showPlayer
+            ? <SpotifyPlayer
+                user={user}
+                playerReady={playerReady}
+                toggleShowPlayer={this.toggleShowPlayer}
+              />
+            : ""
+        }
       </section>
     )
   }
