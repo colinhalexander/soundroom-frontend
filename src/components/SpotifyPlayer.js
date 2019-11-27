@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import encryptor from '../utilities/encryptor'
 
 export default class SpotifyPlayer extends Component {
 
   state = {
     player: null,
-    playerState: null
+    currentTrack: null
   }
 
   componentDidMount() {
@@ -15,8 +16,6 @@ export default class SpotifyPlayer extends Component {
               clearInterval(isPlayerReady)
             }
           }, 1000);
-
-    // get and display currently playing track
   }
 
   initializePlayer = () => {
@@ -41,19 +40,27 @@ export default class SpotifyPlayer extends Component {
         if (!success) {
           alert("Unable to connect to Spotify Player")
         } else {
-          this.getPlayerState(player)
+          this.getCurrentTrack(player)
         }
       })
   }
 
-  getPlayerState = (player) => {
-    player.getCurrentState()
-      .then(state => {
-        console.log("spotify player state:", state)
-        if (state) {
-          this.setState({ playerState: state })
+  getCurrentTrack = (player) => {
+    player._options.getOAuthToken(accessToken => {
+      const request = {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + accessToken
         }
-      })
+      }
+
+      fetch("https://api.spotify.com/v1/me/player", request)
+        .then(response => response.json())
+        .then(response => {
+          console.log("currently playing:", response)
+          this.setState({ currentTrack: response.item })
+        })
+    })
   }
 
   // artistsString = () => {
@@ -61,7 +68,7 @@ export default class SpotifyPlayer extends Component {
   // }
 
   render() {
-    const {}
+    // const {}
 
     return (
       <div className="spotify-player">

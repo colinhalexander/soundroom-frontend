@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import encryptor from '../utilities/encryptor'
 import SpotifyPlayer from '../components/SpotifyPlayer';
 
 export default class SoundRoom extends Component {
