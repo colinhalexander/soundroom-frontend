@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import './stylesheets/App.css'
 
-import LandingPage from './containers/LandingPage'
-import UserPage from './containers/UserPage'
+import LandingPage from './components/LandingPage'
+import UserPage from './components/UserPage'
 import SoundRoom from './containers/SoundRoom'
 
 export default class App extends Component {

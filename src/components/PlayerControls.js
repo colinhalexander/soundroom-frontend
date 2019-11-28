@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import play from '../media/play.png'
 import pause from '../media/pause.png'

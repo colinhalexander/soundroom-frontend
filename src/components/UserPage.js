@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import '../stylesheets/UserPage.css'
-import NewSoundRoomForm from '../components/NewSoundRoomForm'
+import NewSoundRoomForm from './NewSoundRoomForm'
 
 export default class UserPage extends Component {
 

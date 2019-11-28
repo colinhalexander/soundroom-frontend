@@ -22,7 +22,7 @@ export default class SoundRoom extends Component {
   }
 
   toggleShowPlayer = () => {
-    this.setState(prevState => { return { showPlayer: !prevState.showPlayer } } )
+    this.setState({ showPlayer: !this.state.showPlayer })
   }
 
   render() {
