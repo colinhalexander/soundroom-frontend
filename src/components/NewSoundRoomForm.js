@@ -30,9 +30,12 @@ export default class NewSoundRoomForm extends Component {
       fetch("http://localhost:3000/soundrooms", request)
         .then(response => response.json())
         .then(response => {
-          history.push(`/soundroom/${toKebabCase(response.name)}`, {
-            soundroom: response
-          })
+          console.log(response)
+          if (!response.error) {
+            history.push(`/soundroom/${toKebabCase(response.soundroom.name)}`, response)
+          } else {
+            alert(response.error)
+          }
         })
     }
   }

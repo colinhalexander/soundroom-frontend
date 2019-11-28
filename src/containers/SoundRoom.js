@@ -1,24 +1,21 @@
 import React, { Component } from 'react'
+
 import SpotifyPlayer from '../components/SpotifyPlayer'
+import Playlist from '../components/Playlist'
 
 export default class SoundRoom extends Component {
 
   state = {
-    soundroom: {
-      id: 4,
-      name: "Christmas Party 2019",
-      owner_id: "1225479589"
-    },
+    soundroom: {},
+    playlist: null,
     showPlayer: true
   }
 
   componentDidMount() {
-    const { soundroom } = this.props.location.state
-    if (soundroom) {
-      this.setState({ soundroom })
+    const { soundroom, playlist } = this.props.location.state
+    if (soundroom && playlist) {
+      this.setState({ soundroom, playlist })
     }
-
-    // create new playlist for user, named after soundroom
   }
 
   toggleShowPlayer = () => {
@@ -26,12 +23,13 @@ export default class SoundRoom extends Component {
   }
 
   render() {
-    const { soundroom, showPlayer } = this.state
+    const { soundroom, showPlayer, playlist } = this.state
     const { user, playerReady } = this.props
 
     return (
       <section className="soundroom">
         <h2>{soundroom.name}</h2>
+        {playlist ? <Playlist {...playlist} /> : ""}
         { showPlayer
             ? <SpotifyPlayer
                 user={user}

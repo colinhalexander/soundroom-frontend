@@ -1,28 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
+
 import Song from './Song'
 
-export default class Playlist extends Component {
+export default function Playlist({ tracks }) {
 
-  state = {
-    songs: []
-  }
+  const $songs = tracks.items.map(song => <Song {...song} />)
 
-  componentDidMount() {
-    // create playlist
-    
-  }
-
-  displaySongs = () => (
-    this.state.songs.map(song => (
-      <Song {...song} />
-    ))
+  return (
+    <div className="playlist">
+      {$songs}
+    </div>
   )
-
-  render() {
-    return (
-      <div className="playlist">
-        {this.displaySongs()}
-      </div>
-    )
-  }
 }
