@@ -44,7 +44,7 @@ export default class SpotifyPlayer extends Component {
         if (!success) {
           alert("Unable to connect to Spotify Player")
         } else {
-          this.getCurrentTrack()
+          window.updateCurrentTrack = setInterval(this.getCurrentTrack, 5000)
         }
       })
   }
@@ -68,6 +68,7 @@ export default class SpotifyPlayer extends Component {
           })
         })
         .catch(() => {
+          clearInterval(window.updateCurrentTrack)
           this.props.toggleShowPlayer()
         })
     })
@@ -81,7 +82,7 @@ export default class SpotifyPlayer extends Component {
       <div className="spotify-player">
         {
           !this.state.currentTrack
-            ? <p>Loading Current Track...</p>
+            ? <p>Connecting to Spotify...</p>
             : <>
                 <div className="song-info">
                   <img src={album.images[0].url} alt="album art" />
