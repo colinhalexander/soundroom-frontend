@@ -20,6 +20,10 @@ export default class SpotifyPlayer extends Component {
           }, 1000)
   }
 
+  componentWillUnmount() {
+    clearInterval(window.updateCurrentTrack)
+  }
+
   initializePlayer = () => {
     const { Spotify } = window,
           player = new Spotify.Player({
