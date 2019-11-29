@@ -4,7 +4,7 @@ import Song from './Song'
 
 export default function Playlist({ tracks }) {
 
-  const $songs = tracks.items.map(song => <Song {...song} />)
+  const $songs = tracks.items.map((song, index) => <Song key={index} {...song} />)
 
   return (
     <div className="playlist">

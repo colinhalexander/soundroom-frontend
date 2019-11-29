@@ -203,7 +203,7 @@
   font-size: 28px;
   font-weight: 700;
   position: absolute;
-  top: 7vh; }
+  top: 5vh; }
 
 .spotify-player {
   position: absolute;
@@ -261,6 +261,39 @@
 .player-controls .btn:hover {
   transform: scale(1.05);
   cursor: pointer; }
+
+.playlist-builder {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 65vh;
+  margin: 0 10px;
+  width: 90vw; }
+
+.search-bar input {
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-bottom: 2px solid;
+  margin-bottom: 10px;
+  width: 75%;
+  font-size: 20px; }
+
+.search-bar input:focus {
+  outline: none; }
+
+.search-results {
+  display: flex;
+  flex-flow: column nowrap;
+  overflow: scroll;
+  width: 100%; }
+
+.search-results > .song {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0px;
+  border-bottom: 1px solid; }
 
 @keyframes banner {
   from {

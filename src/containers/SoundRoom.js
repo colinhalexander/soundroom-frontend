@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import SpotifyPlayer from '../components/SpotifyPlayer'
 import Playlist from '../components/Playlist'
+import PlaylistBuilder from './PlaylistBuilder'
 
 export default class SoundRoom extends Component {
 
@@ -29,7 +30,8 @@ export default class SoundRoom extends Component {
     return (
       <section className="soundroom">
         <h2>{soundroom ? soundroom.name : ""}</h2>
-        {playlist ? <Playlist {...playlist} /> : ""}
+        {/* {playlist ? <Playlist {...playlist} /> : ""} */}
+        <PlaylistBuilder user={user} playlist={playlist} />
         { showPlayer
             ? <SpotifyPlayer
                 user={user}
