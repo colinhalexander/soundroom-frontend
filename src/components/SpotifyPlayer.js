@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import encryptor from '../utilities/encryptor'
+import { makeListFromArray } from '../utilities/string-methods'
+
 import PlayerControls from './PlayerControls'
 
 export default class SpotifyPlayer extends Component {
@@ -101,22 +103,4 @@ export default class SpotifyPlayer extends Component {
       </div>
     )
   }
-}
-
-///////////////////////////////////////////////////////////////////////////////
-function makeListFromArray(strings) {
-  if (strings.length === 1) return strings[0]
-  if (strings.length === 2) return strings.join(' and ')
-  
-  return strings.reduce((list, string, index) => {
-    if (index === strings.length - 1) {
-      list += ', and ' + string
-    } else if (index > 0) {
-      list += ", " + string
-    } else if (index === 0) {
-      list += string
-    }
-
-    return list
-  }, "")
 }

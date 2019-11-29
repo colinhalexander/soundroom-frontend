@@ -6,7 +6,7 @@ import Playlist from '../components/Playlist'
 export default class SoundRoom extends Component {
 
   state = {
-    soundroom: {},
+    soundroom: null,
     playlist: null,
     showPlayer: true
   }
@@ -28,7 +28,7 @@ export default class SoundRoom extends Component {
 
     return (
       <section className="soundroom">
-        <h2>{soundroom.name}</h2>
+        <h2>{soundroom ? soundroom.name : ""}</h2>
         {playlist ? <Playlist {...playlist} /> : ""}
         { showPlayer
             ? <SpotifyPlayer

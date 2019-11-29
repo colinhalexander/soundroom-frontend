@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { toKebabCase } from '../utilities/string-methods'
 
 export default class NewSoundRoomForm extends Component {
 
@@ -26,11 +27,10 @@ export default class NewSoundRoomForm extends Component {
                 owner_id: id
               })
             }
-  
+      
       fetch("http://localhost:3000/soundrooms", request)
         .then(response => response.json())
         .then(response => {
-          console.log(response)
           if (!response.error) {
             history.push(`/soundroom/${toKebabCase(response.soundroom.name)}`, response)
           } else {
@@ -61,8 +61,4 @@ export default class NewSoundRoomForm extends Component {
       </>
     )
   }
-}
-
-function toKebabCase(string) {
-  return string.toLowerCase().split(' ').join('-')
 }
