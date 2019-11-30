@@ -7,7 +7,7 @@ import next from '../media/next.png'
 
 export default function PlayerControls({ player, isPlaying, triggerUpdate }) {
 
-  const pauseThenUpdate = () => setTimeout(triggerUpdate, 200),
+  const pauseThenUpdate = () => setTimeout(triggerUpdate, 100),
         togglePlay = () => player.togglePlay().then(pauseThenUpdate),
         nextTrack = () => player.nextTrack().then(pauseThenUpdate),
         previousTrack = () => player.previousTrack().then(pauseThenUpdate)

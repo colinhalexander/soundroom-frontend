@@ -23,6 +23,18 @@ export default class SoundRoom extends Component {
     this.setState({ showPlayer: !this.state.showPlayer })
   }
 
+  addSongToPlaylist = (song) => {
+    this.setState(prevState => { return {
+      playlist: {
+        ...prevState.playlist,
+        tracks: {
+          ...prevState.playlist.tracks,
+          items: prevState.playlist.tracks.items.push({ track: song })
+        }
+      }
+    } })
+  }
+
   render() {
     const { soundroom, showPlayer, playlist } = this.state
     const { user, playerReady } = this.props
@@ -31,7 +43,11 @@ export default class SoundRoom extends Component {
       <section className="soundroom">
         <h2>{soundroom ? soundroom.name : ""}</h2>
         {/* {playlist ? <Playlist {...playlist} /> : ""} */}
-        <PlaylistBuilder user={user} playlist={playlist} />
+        <PlaylistBuilder
+          user={user}
+          playlist={playlist}
+          addSongToPlaylist={this.addSongToPlaylist}
+        />
         { showPlayer
             ? <SpotifyPlayer
                 user={user}

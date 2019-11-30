@@ -18,3 +18,9 @@ export function makeListFromArray(strings) {
 export function toKebabCase(string) {
   return string.toLowerCase().split(' ').join('-')
 }
+
+export function containsQuery(query, ...strings) {
+  return strings.reduce((memo, string) => {
+    return memo || string.toLowerCase().includes(query.toLowerCase())
+  }, false)
+}

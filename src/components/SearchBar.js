@@ -4,9 +4,9 @@ export default function SearchBar({ query, updateQuery }) {
   return (
     <div className="search-bar">
       <input
-        autofocus
+        autoFocus
         value={query}
-        onChange={(event) => updateQuery(event.target.value)}
+        onChange={updateQuery}
       />
     </div>
   )

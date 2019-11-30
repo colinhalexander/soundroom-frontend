@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { makeListFromArray } from '../utilities/string-methods'
+import { makeListFromArray, containsQuery } from '../utilities/string-methods'
 
 import SearchBar from '../components/SearchBar'
 import SearchResults from '../components/SearchResults'
@@ -21,25 +21,28 @@ export default class PlaylistBuilder extends Component {
   }
 
   updateSongs = (songs) => this.setState({ songs })
-  updateQuery = (query) => this.setState({ query })
+
+  updateQuery = (event) => {
+    this.setState({ query: event.target.value })
+  }
 
   filteredSongs = () => {
     const { query, songs } = this.state
 
     return songs.filter(song => {
-      const artists = makeListFromArray( song.artists.map(artist => artist.name) )
-      return [song.name, artists, song.album.name].reduce((memo, string) => {
-        return memo || string.toLowerCase().includes(query.toLowerCase())
-      }, false)
+      const artists = makeListFromArray(song.artists.map(artist => artist.name))
+      return containsQuery(query, song.name, artists, song.album.name)
     })
-}
+  }
 
   render() {
     const { query } = this.state
+    const{ addSongToPlaylist } = this.props
+    
     return (
       <div className="playlist-builder">
         <SearchBar query={query} updateQuery={this.updateQuery} />
-        <SearchResults songs={this.filteredSongs()} />
+        <SearchResults songs={this.filteredSongs()} addSongToPlaylist={addSongToPlaylist} />
       </div>
     )
   }
