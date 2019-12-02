@@ -7,6 +7,7 @@ export default function SearchBar({ query, updateQuery }) {
         autoFocus
         value={query}
         onChange={updateQuery}
+        placeholder="Search"
       />
     </div>
   )

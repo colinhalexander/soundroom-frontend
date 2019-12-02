@@ -9,3 +9,11 @@
   text-align: center;
   font-size: 15px;
 }
+
+@mixin soundroom-page {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 65vh;
+  margin: 0 10px;
+  width: 90vw;
+}

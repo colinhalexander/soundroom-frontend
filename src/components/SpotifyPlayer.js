@@ -97,7 +97,11 @@ export default class SpotifyPlayer extends Component {
                     <p>{makeListFromArray( artists.map(artist => artist.name) )}</p>
                   </div>
                 </div>
-                <PlayerControls player={player} isPlaying={isPlaying} triggerUpdate={this.getCurrentTrack} />
+                <PlayerControls
+                  player={player}
+                  isPlaying={isPlaying}
+                  triggerUpdate={this.getCurrentTrack}
+                />
               </>
         }
       </div>

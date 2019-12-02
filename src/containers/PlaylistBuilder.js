@@ -37,10 +37,10 @@ export default class PlaylistBuilder extends Component {
 
   render() {
     const { query } = this.state
-    const{ addSongToPlaylist } = this.props
+    const{ addSongToPlaylist, isCurrentPage } = this.props
     
     return (
-      <div className="playlist-builder">
+      <div className={"playlist-builder"  + (isCurrentPage ? "" : " hide-page")}>
         <SearchBar query={query} updateQuery={this.updateQuery} />
         <SearchResults songs={this.filteredSongs()} addSongToPlaylist={addSongToPlaylist} />
       </div>

@@ -1,0 +1,7 @@
+@import 'mixins';
+
+.playlist {
+  @include soundroom-page;
+  overflow: scroll;
+}
+

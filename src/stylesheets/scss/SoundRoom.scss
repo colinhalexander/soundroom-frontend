@@ -11,3 +11,34 @@
   position: absolute;
   top: 5vh;
 }
+
+.nav-bar {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  width: 90%;
+  margin-bottom: 10px;
+}
+
+.nav-bar > button {
+  width: 100px;
+  color: white;
+}
+
+.nav-bar > .left {
+  text-align: left;
+}
+
+.nav-bar > .right {
+  text-align: right;
+}
+
+.nav-bar > .current-page {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  width: 140px;
+  text-decoration: underline;
+}
