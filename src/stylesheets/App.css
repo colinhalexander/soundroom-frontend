@@ -334,26 +334,33 @@ button {
 
 .search-bar {
   display: flex;
-  padding: 10px 5px;
+  padding: 10px 10px;
   border: 2px solid;
   margin-bottom: 10px; }
 
-.search-bar input {
+.search-bar input:nth-of-type(1) {
   align-self: auto;
   background-color: transparent;
   color: white;
   border: none;
   border-bottom: 2px solid;
+  margin-right: 5px;
   width: 100%;
   font-size: 20px; }
 
 ::placeholder {
   color: white;
-  opacity: 0.6;
-  font-weight: 400; }
+  opacity: 0.6; }
 
-.search-bar input:focus {
-  outline: none; }
+#search-type, .search-bar input:nth-of-type(2) {
+  background: linear-gradient(#6dbaeb, #1d8dd5);
+  color: white;
+  margin-left: 5px;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 0 7px;
+  font-size: 12px;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.2); }
 
 .search-results {
   display: flex;

@@ -1,14 +1,28 @@
 import React from 'react'
 
-export default function SearchBar({ query, updateQuery }) {
+export default function SearchBar({
+  query,
+  updateQuery,
+  updateSearchType,
+  searchSpotify,
+  submitSearch
+}) {
   return (
-    <div className="search-bar">
+    <form className="search-bar" onSubmit={submitSearch}>
       <input
         autoFocus
         value={query}
         onChange={updateQuery}
         placeholder="Search"
       />
-    </div>
+      <select id="search-type" onChange={updateSearchType}>
+        <option value="Top Songs">Top Songs</option>
+        <option value="Spotify">Spotify</option>
+      </select>
+      { searchSpotify
+          ? <input type="submit" />
+          : ""
+      }
+    </form>
   )
 }

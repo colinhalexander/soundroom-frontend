@@ -2,15 +2,24 @@ import React from 'react'
 
 import Song from './Song'
 
-export default function SearchResults({ songs, addSongToPlaylist }) {
+export default function SearchResults({
+  topSongs,
+  addSongToPlaylist,
+  resultSongs,
+  searchSpotify
+}) {
 
-  const $songs = songs.map((song, index) => (
+  const $topSongs = topSongs.map((song, index) => (
+    <Song key={index} song={song} handleClick={addSongToPlaylist} />
+  ))
+
+  const $songs = resultSongs.map((song, index) => (
     <Song key={index} song={song} handleClick={addSongToPlaylist} />
   ))
 
   return (
     <div className="search-results">
-      {$songs}
+      {searchSpotify ? $songs : $topSongs}
     </div>
   )
 }

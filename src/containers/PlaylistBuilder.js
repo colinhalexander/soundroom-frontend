@@ -8,7 +8,8 @@ export default class PlaylistBuilder extends Component {
 
   state = {
     query: "",
-    songs: [],
+    topSongs: [],
+    resultSongs: [],
     searchSpotify: false
   }
 
@@ -20,29 +21,69 @@ export default class PlaylistBuilder extends Component {
       })
   }
 
-  updateSongs = (songs) => this.setState({ songs })
+  updateSongs = (songs) => this.setState({ topSongs: songs })
 
   updateQuery = (event) => {
     this.setState({ query: event.target.value })
   }
 
-  filteredSongs = () => {
-    const { query, songs } = this.state
+  updateSearchType = (event) => {
+    this.setState({
+      searchSpotify: (event.target.value === "Spotify"),
+      query: ""
+    })
+  }
 
-    return songs.filter(song => {
+  submitSearch = (event) => {
+    event.preventDefault()
+    const { query, searchSpotify } = this.state
+    if (!searchSpotify) return
+
+    fetch(`http://localhost:3000/spotify/${this.props.user.id}/search`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ query })
+    })
+      .then(response => response.json())
+      .then(response => {
+        if (!response.error) {
+          this.setState({
+            resultSongs: response.tracks.items
+          })
+        }
+      })
+  }
+
+  filteredSongs = () => {
+    const { query, topSongs, resultSongs } = this.state
+
+    return topSongs.filter(song => {
       const artists = makeListFromArray(song.artists.map(artist => artist.name))
       return containsQuery(query, song.name, artists, song.album.name)
     })
   }
 
   render() {
-    const { query } = this.state
-    const{ addSongToPlaylist, isCurrentPage } = this.props
+    const { query, searchSpotify, resultSongs } = this.state
+    const { addSongToPlaylist, isCurrentPage } = this.props
     
     return (
       <div className={"playlist-builder"  + (isCurrentPage ? "" : " hide-page")}>
-        <SearchBar query={query} updateQuery={this.updateQuery} />
-        <SearchResults songs={this.filteredSongs()} addSongToPlaylist={addSongToPlaylist} />
+        <SearchBar
+          query={query}
+          updateQuery={this.updateQuery}
+          updateSearchType={this.updateSearchType}
+          searchSpotify={searchSpotify}
+          submitSearch={this.submitSearch}
+        />
+        <SearchResults
+          topSongs={this.filteredSongs()}
+          resultSongs={resultSongs}
+          addSongToPlaylist={addSongToPlaylist}
+          searchSpotify={searchSpotify}
+        />
       </div>
     )
   }

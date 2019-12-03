@@ -1,37 +1,80 @@
-.playlist-builder {
-  display: flex;
-  flex-flow: column nowrap;
-  height: 65vh;
-  margin: 0 10px;
-  width: 90vw; }
+/*
+Error: Undefined variable: "$sea-green-light-2".
+        on line 31 of src/stylesheets/scss/PlaylistBuilder.scss
 
-.search-bar {
-  display: flex;
-  padding: 10px 5px;
-  border: 2px solid;
-  margin-bottom: 10px; }
+26:   color: white;
+27:   opacity: 0.6;
+28: }
+29: 
+30: #search-type, .search-bar input:nth-of-type(2) {
+31:   background: linear-gradient($sea-green-light-2, $sea-green-base);
+32:   color: white;
+33:   margin-left: 5px;
+34:   border: 1px solid white;
+35:   border-radius: 5px;
+36:   padding: 0 7px;
 
-.search-bar input {
-  align-self: auto;
-  background-color: transparent;
-  color: white;
-  border: none;
-  border-bottom: 2px solid;
-  width: 100%;
-  font-size: 20px; }
-
-::placeholder {
-  color: white;
-  opacity: 0.6;
-  font-weight: 400; }
-
-.search-bar input:focus {
-  outline: none; }
-
-.search-results {
-  display: flex;
-  flex-flow: column nowrap;
-  overflow: scroll;
-  width: 100%; }
-
-/*# sourceMappingURL=PlaylistBuilder.css.map */
+Backtrace:
+src/stylesheets/scss/PlaylistBuilder.scss:31
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/script/tree/variable.rb:49:in `_perform'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/script/tree/node.rb:50:in `perform'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:182:in `perform_arg'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:129:in `block in _perform'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:129:in `each'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:129:in `each_with_index'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:129:in `each'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:129:in `map'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:129:in `_perform'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/script/tree/node.rb:50:in `perform'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:398:in `visit_prop'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block (2 levels) in visit_rule'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `map'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `map'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:157:in `visit'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:10:in `visit'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/root_node.rb:36:in `css_tree'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/engine.rb:307:in `render_with_sourcemap'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:462:in `update_stylesheet'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `each'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:443:in `on_file_changed'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:320:in `block in watch'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-listen-4.0.0/lib/sass-listen/event/config.rb:23:in `call'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:115:in `_process_changes'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:19:in `block in loop_for'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:15:in `loop'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:15:in `loop_for'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-listen-4.0.0/lib/sass-listen/event/loop.rb:84:in `_wait_for_changes'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-listen-4.0.0/lib/sass-listen/event/loop.rb:42:in `block in setup'
+/Users/colinalexander/.rvm/gems/ruby-2.6.1/gems/sass-listen-4.0.0/lib/sass-listen/internals/thread_pool.rb:6:in `block in add'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$sea-green-light-2\".\A         on line 31 of src/stylesheets/scss/PlaylistBuilder.scss\A \A 26:   color: white;\A 27:   opacity: 0.6;\A 28: }\A 29: \A 30: #search-type, .search-bar input:nth-of-type(2) {\A 31:   background: linear-gradient($sea-green-light-2, $sea-green-base);\A 32:   color: white;\A 33:   margin-left: 5px;\A 34:   border: 1px solid white;\A 35:   border-radius: 5px;\A 36:   padding: 0 7px;"; }

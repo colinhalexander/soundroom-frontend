@@ -29,6 +29,9 @@ export default class SoundRoom extends Component {
     const { user } = this.props,
           { playlist } = this.state 
 
+    // check if playlist already contains song
+    if ((playlist.tracks.items.map(item => item.track)).includes(song)) return
+
     fetch(`http://localhost:3000/spotify/${user.id}/${playlist.id}/songs`, {
       method: 'POST',
       headers: {
@@ -75,7 +78,6 @@ export default class SoundRoom extends Component {
     })
       .then(response => response.json())
       .then(response => {
-        console.log(response)
         if (!response.error) {
           this.removeSongFromPlaylistState(song)
         }
