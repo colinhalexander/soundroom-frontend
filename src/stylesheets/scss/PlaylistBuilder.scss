@@ -4,13 +4,20 @@
   @include soundroom-page
 }
 
+.search-bar {
+  display: flex;
+  padding: 10px 5px;
+  border: 2px solid;
+  margin-bottom: 10px;
+}
+
 .search-bar input {
+  align-self: auto;
   background-color: transparent;
   color: white;
   border: none;
   border-bottom: 2px solid;
-  margin-bottom: 10px;
-  width: 75%;
+  width: 100%;
   font-size: 20px;
 }
 
@@ -29,13 +36,4 @@
   flex-flow: column nowrap;
   overflow: scroll;
   width: 100%;
-}
-
-.song {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 0px;
-  border-bottom: 1px solid;
 }

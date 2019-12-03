@@ -24,6 +24,10 @@
   width: 90%;
   margin-bottom: 10px; }
 
+button {
+  background-color: transparent;
+  border: none; }
+
 .nav-bar > button {
   width: 100px;
   color: white; }
@@ -36,9 +40,24 @@
 
 .nav-bar > .current-page {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   text-align: center;
-  width: 140px;
-  text-decoration: underline; }
+  width: 140px; }
+
+.song {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0px;
+  border-bottom: 1px solid; }
+
+.song img {
+  width: 25px;
+  transition: all 0.2s; }
+
+.song img:hover {
+  transform: scale(1.05);
+  cursor: pointer; }
 
 /*# sourceMappingURL=SoundRoom.css.map */

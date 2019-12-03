@@ -4,6 +4,16 @@
   height: 65vh;
   margin: 0 10px;
   width: 90vw;
-  overflow: scroll; }
+  overflow: scroll;
+  border: 1px solid; }
+
+.playlist .song img {
+  width: 25px;
+  transition: all 0.2s;
+  transform: rotate(45deg); }
+
+.playlist .empty-msg {
+  align-self: center;
+  margin-top: 30px; }
 
 /*# sourceMappingURL=Playlist.css.map */

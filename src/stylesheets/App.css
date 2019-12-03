@@ -214,6 +214,10 @@
   width: 90%;
   margin-bottom: 10px; }
 
+button {
+  background-color: transparent;
+  border: none; }
+
 .nav-bar > button {
   width: 100px;
   color: white; }
@@ -226,10 +230,25 @@
 
 .nav-bar > .current-page {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   text-align: center;
-  width: 140px;
-  text-decoration: underline; }
+  width: 140px; }
+
+.song {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0px;
+  border-bottom: 1px solid; }
+
+.song img {
+  width: 25px;
+  transition: all 0.2s; }
+
+.song img:hover {
+  transform: scale(1.05);
+  cursor: pointer; }
 
 .spotify-player {
   position: absolute;
@@ -294,7 +313,17 @@
   height: 65vh;
   margin: 0 10px;
   width: 90vw;
-  overflow: scroll; }
+  overflow: scroll;
+  border: 1px solid; }
+
+.playlist .song img {
+  width: 25px;
+  transition: all 0.2s;
+  transform: rotate(45deg); }
+
+.playlist .empty-msg {
+  align-self: center;
+  margin-top: 30px; }
 
 .playlist-builder {
   display: flex;
@@ -303,13 +332,19 @@
   margin: 0 10px;
   width: 90vw; }
 
+.search-bar {
+  display: flex;
+  padding: 10px 5px;
+  border: 2px solid;
+  margin-bottom: 10px; }
+
 .search-bar input {
+  align-self: auto;
   background-color: transparent;
   color: white;
   border: none;
   border-bottom: 2px solid;
-  margin-bottom: 10px;
-  width: 75%;
+  width: 100%;
   font-size: 20px; }
 
 ::placeholder {
@@ -326,17 +361,27 @@
   overflow: scroll;
   width: 100%; }
 
-.song {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 0px;
-  border-bottom: 1px solid; }
-
 .hide-page {
   display: none; }
 
+@media only screen and (min-width: 640px) {
+  .soundroom {
+    flex-direction: row;
+    justify-content: space-around; }
+
+  .soundroom > * {
+    width: 40%; }
+
+  .hide-page {
+    display: initial; }
+
+  .nav-bar {
+    display: none; }
+
+  .spotify-player {
+    left: 0;
+    width: 25%;
+    min-width: 300px; } }
 @keyframes banner {
   from {
     top: -20px; }

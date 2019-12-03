@@ -12,7 +12,10 @@ export default function Playlist({ tracks, isCurrentPage }) {
 
   return (
     <div className={"playlist" + (isCurrentPage ? "" : " hide-page")}>
-      {$songs}
+      { $songs && $songs.length > 0
+          ? $songs
+          : <p className="empty-msg">Use the Playlist Builder to add songs.</p>
+      }
     </div>
   )
 }

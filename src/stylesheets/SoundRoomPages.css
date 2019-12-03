@@ -1,4 +1,23 @@
 .hide-page {
   display: none; }
 
+@media only screen and (min-width: 640px) {
+  .soundroom {
+    flex-direction: row;
+    justify-content: space-around; }
+
+  .soundroom > * {
+    width: 40%; }
+
+  .hide-page {
+    display: initial; }
+
+  .nav-bar {
+    display: none; }
+
+  .spotify-player {
+    left: 0;
+    width: 25%;
+    min-width: 300px; } }
+
 /*# sourceMappingURL=SoundRoomPages.css.map */
