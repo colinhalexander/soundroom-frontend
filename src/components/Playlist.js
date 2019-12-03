@@ -2,11 +2,11 @@ import React from 'react'
 
 import Song from './Song'
 
-export default function Playlist({ tracks, isCurrentPage }) {
+export default function Playlist({ tracks, isCurrentPage, removeSongFromPlaylist }) {
 
   const $songs = tracks
     ? tracks.items.map((song, index) => {
-        return <Song key={index} song={song.track} />
+        return <Song key={index} song={song.track} handleClick={removeSongFromPlaylist} />
       })
     : null
 

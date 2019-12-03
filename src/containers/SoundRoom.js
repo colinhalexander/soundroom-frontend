@@ -26,6 +26,27 @@ export default class SoundRoom extends Component {
   }
 
   addSongToPlaylist = (song) => {
+    const { user } = this.props,
+          { playlist } = this.state 
+
+    fetch(`http://localhost:3000/spotify/${user.id}/${playlist.id}/songs`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        uris: [song.uri]
+      })
+    })
+      .then(response => response.json())
+      .then(response => {
+        if (!response.error) {
+          this.addSongToPlaylistState(song)
+        }
+      })
+  }
+
+  addSongToPlaylistState = (song) => {
     this.setState(prevState => { 
       return {
         playlist: {
@@ -33,6 +54,43 @@ export default class SoundRoom extends Component {
           tracks: {
             ...prevState.playlist.tracks,
             items: [...prevState.playlist.tracks.items, { track: song }]
+          }
+        }
+      }
+    })
+  }
+
+  removeSongFromPlaylist = (song) => {
+    const { user } = this.props,
+          { playlist } = this.state 
+
+    fetch(`http://localhost:3000/spotify/${user.id}/${playlist.id}/songs`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        tracks: [{ uri: song.uri }]
+      })
+    })
+      .then(response => response.json())
+      .then(response => {
+        console.log(response)
+        if (!response.error) {
+          this.removeSongFromPlaylistState(song)
+        }
+      })
+  }
+  
+  removeSongFromPlaylistState = (song) => {
+    this.setState(prevState => {
+      const { playlist } = prevState
+      return {
+        playlist: {
+          ...playlist,
+          tracks: {
+            ...playlist.tracks,
+            items: playlist.tracks.items.filter(playlistSong => playlistSong.track !== song)
           }
         }
       }
@@ -59,6 +117,7 @@ export default class SoundRoom extends Component {
         <Playlist
           {...playlist}
           isCurrentPage={"Playlist" === this.state.currentPage}
+          removeSongFromPlaylist={this.removeSongFromPlaylist}
         />
         <PlaylistBuilder
           user={user}
