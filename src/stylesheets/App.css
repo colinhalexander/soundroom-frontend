@@ -389,6 +389,17 @@ button {
     left: 0;
     width: 25%;
     min-width: 300px; } }
+.request-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: linear-gradient(#1d8dd5, #907f75);
+  height: 100vh;
+  color: white;
+  text-align: center;
+  font-size: 15px; }
+
 @keyframes banner {
   from {
     top: -20px; }

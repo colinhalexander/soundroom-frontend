@@ -1,0 +1,5 @@
+@import 'mixins';
+
+.request-page {
+  @include default-background;
+}

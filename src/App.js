@@ -6,6 +6,7 @@ import './stylesheets/App.css'
 import LandingPage from './components/LandingPage'
 import UserPage from './components/UserPage'
 import SoundRoom from './containers/SoundRoom'
+import RequestPage from './components/RequestPage'
 
 export default class App extends Component {
 
@@ -31,6 +32,7 @@ export default class App extends Component {
       <Router>
         <div className="App">
           <Route exact path="/" render={(props) => <LandingPage {...props} />} />
+          <Route path="/requests" render={(props) => <RequestPage {...props} />} />
           <Route
             path="/users/:spotifyID"
             render={(props) => <UserPage {...props} user={user} setUser={this.setUser} />}
@@ -44,4 +46,3 @@ export default class App extends Component {
     )
   }
 }
-

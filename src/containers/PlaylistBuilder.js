@@ -17,11 +17,11 @@ export default class PlaylistBuilder extends Component {
     fetch(`http://localhost:3000/spotify/${this.props.user.id}/top/songs`)
       .then(response => response.json())
       .then(response => {
-        this.updateSongs(response.items)
+        this.updateTopSongs(response.items)
       })
   }
 
-  updateSongs = (songs) => this.setState({ topSongs: songs })
+  updateTopSongs = (songs) => this.setState({ topSongs: songs })
 
   updateQuery = (event) => {
     this.setState({ query: event.target.value })
@@ -48,16 +48,12 @@ export default class PlaylistBuilder extends Component {
     })
       .then(response => response.json())
       .then(response => {
-        if (!response.error) {
-          this.setState({
-            resultSongs: response.tracks.items
-          })
-        }
+        if (!response.error) this.setState({ resultSongs: response.tracks.items })
       })
   }
 
   filteredSongs = () => {
-    const { query, topSongs, resultSongs } = this.state
+    const { query, topSongs } = this.state
 
     return topSongs.filter(song => {
       const artists = makeListFromArray(song.artists.map(artist => artist.name))
