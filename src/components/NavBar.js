@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function NavBar({ currentPage, changeCurrentPage }) {
 
-  const pages = ["Settings", "Playlist", "Playlist Builder"]
+  const pages = ["Playlist", "Playlist Builder", "Requests"]
 
   const getSlice = () => {
     const index = pages.findIndex(page => page === currentPage)

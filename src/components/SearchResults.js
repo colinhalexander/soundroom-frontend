@@ -9,9 +9,11 @@ export default function SearchResults({
   searchSpotify
 }) {
 
-  const $topSongs = topSongs.map((song, index) => (
-    <Song key={index} song={song} handleClick={addSongToPlaylist} />
-  ))
+  const $topSongs = topSongs
+    ? topSongs.map((song, index) => (
+      <Song key={index} song={song} handleClick={addSongToPlaylist} />
+    ))
+    : null
 
   const $songs = resultSongs.map((song, index) => (
     <Song key={index} song={song} handleClick={addSongToPlaylist} />

@@ -12,34 +12,54 @@ export default class App extends Component {
 
   state = {
     user: null,
+    webSocket: null,
     playerReady: false
   }
 
   componentDidMount() {
+    this.initializeWebSocket()
+
     window.onSpotifyWebPlaybackSDKReady = () => {
       this.setState({ playerReady: true })
     }
   }
 
-  setUser = (user) => {
-    this.setState({ user })
+  initializeWebSocket = () => {
+    // upgrade to 'wss://' protocol once backend is deployed
+    const webSocket = new window.WebSocket('ws://localhost:3000/')
+
+    webSocket.onopen = () => this.setState({ webSocket })
+    webSocket.onclose = () => this.setState({ webSocket: null })
+    webSocket.onerror = () => this.setState({ webSocket: null })
   }
 
+  setUser = (user) => this.setState({ user })
+
   render() {
-    const { user, playerReady } = this.state
+    const { user, playerReady, webSocket } = this.state
 
     return (
       <Router>
         <div className="App">
           <Route exact path="/" render={(props) => <LandingPage {...props} />} />
-          <Route path="/requests" render={(props) => <RequestPage {...props} />} />
+          <Route path="/requests"
+            render={(props) => <RequestPage
+              {...props}
+              webSocket={webSocket}
+            />}
+          />
           <Route
             path="/users/:spotifyID"
             render={(props) => <UserPage {...props} user={user} setUser={this.setUser} />}
           />
           <Route
             path="/soundroom/:name"
-            render={(props) => <SoundRoom {...props} user={user} playerReady={playerReady} />}
+            render={(props) => <SoundRoom
+              {...props}
+              user={user}
+              playerReady={playerReady}
+              webSocket={webSocket}
+            />}
           />
         </div>
       </Router>

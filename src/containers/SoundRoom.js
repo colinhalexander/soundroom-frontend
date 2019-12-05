@@ -4,6 +4,7 @@ import SpotifyPlayer from '../components/SpotifyPlayer'
 import Playlist from '../components/Playlist'
 import PlaylistBuilder from './PlaylistBuilder'
 import NavBar from '../components/NavBar'
+import SoundRoomRequests from '../components/SoundRoomRequests'
 
 export default class SoundRoom extends Component {
 
@@ -11,7 +12,8 @@ export default class SoundRoom extends Component {
     soundroom: null,
     playlist: null,
     currentPage: "Playlist Builder",
-    showPlayer: true
+    showPlayer: true,
+    requests: []
   }
 
   componentDidMount() {
@@ -19,6 +21,25 @@ export default class SoundRoom extends Component {
     if (soundroom && playlist) {
       this.setState({ soundroom, playlist })
     }
+    
+    const { webSocket, user } = this.props
+    if (!user) this.props.history.goBack()
+    if (webSocket) {
+      webSocket.send(JSON.stringify({ userID: user.id, type: "initial" }))
+      
+      webSocket.onmessage = (message) => {
+        const data = JSON.parse(message.data)
+        this.setState(prevState => {
+          return { requests: [...prevState.requests, data.song] }
+        })
+      }
+    }
+  }
+
+  removeSongFromRequests = (song) => {
+    this.setState(prevState => {
+      return { requests: prevState.requests.filter(request => request !== song) }
+    })
   }
 
   toggleShowPlayer = () => {
@@ -29,7 +50,7 @@ export default class SoundRoom extends Component {
     const { user } = this.props,
           { playlist } = this.state 
 
-    // check if playlist already contains song
+    // return if playlist already contains song
     if ((playlist.tracks.items.map(item => item.track)).includes(song)) return
 
     fetch(`http://localhost:3000/spotify/${user.id}/${playlist.id}/songs`, {
@@ -92,7 +113,7 @@ export default class SoundRoom extends Component {
           ...playlist,
           tracks: {
             ...playlist.tracks,
-            items: playlist.tracks.items.filter(playlistSong => playlistSong.track !== song)
+            items: playlist.tracks.items.filter(item => item.track !== song)
           }
         }
       }
@@ -106,7 +127,7 @@ export default class SoundRoom extends Component {
   }
 
   render() {
-    const { soundroom, showPlayer, playlist, currentPage } = this.state
+    const { soundroom, showPlayer, playlist, currentPage, requests } = this.state
     const { user, playerReady } = this.props
 
     return (
@@ -118,14 +139,14 @@ export default class SoundRoom extends Component {
         />
         <Playlist
           {...playlist}
-          isCurrentPage={"Playlist" === this.state.currentPage}
+          isCurrentPage={"Playlist" === currentPage}
           removeSongFromPlaylist={this.removeSongFromPlaylist}
         />
         <PlaylistBuilder
           user={user}
           playlist={playlist}
           addSongToPlaylist={this.addSongToPlaylist}
-          isCurrentPage={"Playlist Builder" === this.state.currentPage}
+          isCurrentPage={"Playlist Builder" === currentPage}
         />
         { showPlayer
             ? <SpotifyPlayer
@@ -135,6 +156,14 @@ export default class SoundRoom extends Component {
               />
             : ""
         }
+        <SoundRoomRequests
+          isCurrentPage={"Requests" === currentPage}
+          requests={requests}
+          user={user}
+          addSongToPlaylist={this.addSongToPlaylist}
+          soundroom={soundroom}
+          removeSongFromRequests={this.removeSongFromRequests}
+        />
       </section>
     )
   }

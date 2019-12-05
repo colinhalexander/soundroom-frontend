@@ -14,11 +14,13 @@ export default class PlaylistBuilder extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/spotify/${this.props.user.id}/top/songs`)
-      .then(response => response.json())
-      .then(response => {
-        this.updateTopSongs(response.items)
-      })
+    if (this.props.user) {
+      fetch(`http://localhost:3000/spotify/${this.props.user.id}/top/songs`)
+        .then(response => response.json())
+        .then(response => {
+          this.updateTopSongs(response.items)
+        })
+    }
   }
 
   updateTopSongs = (songs) => this.setState({ topSongs: songs })

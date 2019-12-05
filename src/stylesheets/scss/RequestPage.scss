@@ -3,3 +3,7 @@
 .request-page {
   @include default-background;
 }
+
+.request-page > .search-container {
+  @include soundroom-page
+}
