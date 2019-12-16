@@ -17,11 +17,13 @@ export default class RequestPage extends Component {
     this.getReferralObject()
   }
 
-  getReferralObject = () => {
+  getReferralObject = async () => {
     const urlParams = new URLSearchParams(window.location.search),
-          code = urlParams.get('code'),
-          referral = JSON.parse(encryptor.decrypt(code))
+          code = urlParams.get('code').replace(/\s/g, '+'),
+          referral = await encryptor.decrypt(code)
 
+    console.log(code)
+    console.log(referral)
     this.setState({ referral })
   }
 
@@ -60,7 +62,7 @@ export default class RequestPage extends Component {
 
     return (
       <div className="request-page">
-        <h3>Request Page</h3>
+        <h3>Use the search bar below to find and request songs.</h3>
         <div className="search-container">
           <SearchBar
             query={query}

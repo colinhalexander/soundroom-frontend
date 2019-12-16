@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import encryptor from '../utilities/encryptor'
 
 import Song from './Song'
 
@@ -8,14 +7,10 @@ export default function SoundRoomRequests({
   isCurrentPage,
   addSongToPlaylist,
   removeSongFromRequests,
-  user
+  referralCode
 }) {
 
   const [showPage, setShowPage] = useState("invitelink")
-
-  const referralCode = encryptor.encrypt(JSON.stringify({
-    targetID: user.id
-  }))
 
   const addSongToPlaylistAndRemoveFromRequests = (song) => {
     addSongToPlaylist(song)

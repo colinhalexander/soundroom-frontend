@@ -4,6 +4,13 @@
   @include default-background;
 }
 
+.request-page > h3 {
+  position: relative;
+  bottom: 30px;
+  font-size: 20px;
+  margin: 0px 20px;
+}
+
 .request-page > .search-container {
   @include soundroom-page
 }

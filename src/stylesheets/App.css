@@ -416,7 +416,7 @@ button {
     justify-content: space-around; }
 
   .soundroom > * {
-    width: 40%; }
+    width: 25%; }
 
   .hide-page {
     display: initial; }
@@ -438,6 +438,12 @@ button {
   color: white;
   text-align: center;
   font-size: 15px; }
+
+.request-page > h3 {
+  position: relative;
+  bottom: 30px;
+  font-size: 20px;
+  margin: 0px 20px; }
 
 .request-page > .search-container {
   display: flex;

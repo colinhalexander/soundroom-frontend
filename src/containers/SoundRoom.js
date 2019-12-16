@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import encryptor from '../utilities/encryptor'
 
 import SpotifyPlayer from '../components/SpotifyPlayer'
 import Playlist from '../components/Playlist'
@@ -13,27 +14,46 @@ export default class SoundRoom extends Component {
     playlist: null,
     currentPage: "Playlist Builder",
     showPlayer: true,
-    requests: []
+    requests: [],
+    referralCode: null
   }
 
   componentDidMount() {
     const { soundroom, playlist } = this.props.location.state
-    if (soundroom && playlist) {
-      this.setState({ soundroom, playlist })
-    }
-    
     const { webSocket, user } = this.props
+
     if (!user) this.props.history.goBack()
-    if (webSocket) {
-      webSocket.send(JSON.stringify({ userID: user.id, type: "initial" }))
-      
-      webSocket.onmessage = (message) => {
-        const data = JSON.parse(message.data)
-        this.setState(prevState => {
-          return { requests: [...prevState.requests, data.song] }
-        })
-      }
+
+    if (soundroom && playlist) {
+      this.setState({ soundroom, playlist }, () => {
+        this.setReferralCode()
+      })
     }
+
+    if (webSocket) this.initializeRequestSocket()
+  }
+
+  initializeRequestSocket = () => {
+    const { webSocket, user } = this.props
+
+    webSocket.send(JSON.stringify({ userID: user.id, type: "initial" }))
+    webSocket.onmessage = (message) => {
+      const data = JSON.parse(message.data)
+      this.setState(prevState => {
+        return { requests: [...prevState.requests, data.song] }
+      })
+    }
+  }
+
+  setReferralCode = () => {
+    const { soundroom } = this.state
+    const { user } = this.props
+    this.setState({
+      referralCode: encryptor.encrypt({
+        targetID: user.id,
+        soundroom: soundroom.name
+      })
+    })
   }
 
   removeSongFromRequests = (song) => {
@@ -127,7 +147,9 @@ export default class SoundRoom extends Component {
   }
 
   render() {
-    const { soundroom, showPlayer, playlist, currentPage, requests } = this.state
+    const { soundroom, showPlayer, 
+            playlist, currentPage, 
+            requests, referralCode } = this.state
     const { user, playerReady } = this.props
 
     return (
@@ -159,10 +181,10 @@ export default class SoundRoom extends Component {
         <SoundRoomRequests
           isCurrentPage={"Requests" === currentPage}
           requests={requests}
-          user={user}
           addSongToPlaylist={this.addSongToPlaylist}
           soundroom={soundroom}
           removeSongFromRequests={this.removeSongFromRequests}
+          referralCode={referralCode}
         />
       </section>
     )

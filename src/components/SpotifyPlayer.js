@@ -33,7 +33,6 @@ export default class SpotifyPlayer extends Component {
             getOAuthToken: async (callback) => {
               const accessToken = await fetch(`http://localhost:3000/users/${this.props.user.id}/token`)
                 .then(response => response.json())
-
               callback(encryptor.decrypt(accessToken))
             }
           })
