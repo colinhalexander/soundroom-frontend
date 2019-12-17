@@ -47,6 +47,7 @@ export default class SoundRoom extends Component {
   setReferralCode = () => {
     const { soundroom } = this.state
     const { user, encryptor } = this.props
+
     this.setState({
       referralCode: encryptor.encrypt({
         targetID: user.id,

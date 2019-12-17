@@ -13,7 +13,12 @@ export default class RequestPage extends Component {
   }
 
   componentDidMount() {
-    this.getReferralObject()
+    const checkForEncryptor = setInterval(() => {
+      if (this.props.encryptor.encrypt) {
+        this.getReferralObject()
+        clearInterval(checkForEncryptor)
+      }
+    }, 500)
   }
 
   getReferralObject = async () => {
@@ -21,7 +26,7 @@ export default class RequestPage extends Component {
     const urlParams = new URLSearchParams(window.location.search),
           code = urlParams.get('code').replace(/\s/g, '+'),
           referral = await encryptor.decrypt(code)
-
+    
     this.setState({ referral })
   }
 

@@ -17,7 +17,7 @@ export default function SoundRoomRequests({
     removeSongFromRequests(song)
   }
 
-  const qrCodeAddress = `http://api.qrserver.com/v1/create-qr-code/?data=${referralCode}&size=200x200`
+  const qrCodeAddress = `http://api.qrserver.com/v1/create-qr-code/?data=https://soundroom-1.firebaseapp.com/requests?code=${referralCode}&size=200x200`
 
   const $requests = requests.map((song, index) => {
     return <Song

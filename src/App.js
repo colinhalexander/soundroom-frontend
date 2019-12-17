@@ -41,8 +41,11 @@ export default class App extends Component {
     const webSocket = new window.WebSocket('wss://soundroom-1.herokuapp.com/')
 
     webSocket.onopen = () => this.setState({ webSocket })
-    webSocket.onclose = () => this.setState({ webSocket: null })
     webSocket.onerror = () => this.setState({ webSocket: null })
+    webSocket.onclose = () => {
+      const webSocket = new window.WebSocket('wss://soundroom-1.herokuapp.com/')
+      this.setState({ webSocket })
+    }
   }
 
   setUser = (user) => this.setState({ user })
