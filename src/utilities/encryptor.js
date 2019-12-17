@@ -1,8 +1,7 @@
 import encryptor from 'simple-encryptor'
-import { superSecretKey } from './env'
+import firebase from 'firebase-functions'
 
 export default encryptor({
-  key: superSecretKey,
+  key: firebase.config().encryption.key,
   hmac: false,
-  debug: true
 })
