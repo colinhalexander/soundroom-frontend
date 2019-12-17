@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import encryptionConfig from '../utilities/encryptor'
 import { makeListFromArray } from '../utilities/string-methods'
 
 import PlayerControls from './PlayerControls'
-
-const encryptor = encryptionConfig()
 
 export default class SpotifyPlayer extends Component {
 
@@ -29,6 +26,7 @@ export default class SpotifyPlayer extends Component {
   }
 
   initializePlayer = () => {
+    const { encryptor } = this.props
     const { Spotify } = window,
           player = new Spotify.Player({
             name: "Soundroom",

@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import encryptionConfig from '../utilities/encryptor'
 
 import SearchBar from './SearchBar'
 import SearchResults from './SearchResults'
-
-const encryptor = encryptionConfig()
 
 export default class RequestPage extends Component {
 
@@ -20,6 +17,7 @@ export default class RequestPage extends Component {
   }
 
   getReferralObject = async () => {
+    const { encryptor } = this.props
     const urlParams = new URLSearchParams(window.location.search),
           code = urlParams.get('code').replace(/\s/g, '+'),
           referral = await encryptor.decrypt(code)

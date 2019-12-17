@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import encryptor from 'simple-encryptor'
 
 import './stylesheets/App.css'
 
@@ -13,7 +14,8 @@ export default class App extends Component {
   state = {
     user: null,
     webSocket: null,
-    playerReady: false
+    playerReady: false,
+    encryptor: {}
   }
 
   componentDidMount() {
@@ -22,10 +24,20 @@ export default class App extends Component {
     window.onSpotifyWebPlaybackSDKReady = () => {
       this.setState({ playerReady: true })
     }
+
+    fetch("https://soundroom-1.herokuapp.com/encryption")
+        .then(response => response.json())
+        .then(response => {
+          this.setState({
+            encryptor: encryptor({
+              key: response.key,
+              hmac: false,
+            })
+          })
+        })
   }
 
   initializeWebSocket = () => {
-    // upgrade to 'wss://' protocol once backend is deployed
     const webSocket = new window.WebSocket('wss://soundroom-1.herokuapp.com/')
 
     webSocket.onopen = () => this.setState({ webSocket })
@@ -36,7 +48,7 @@ export default class App extends Component {
   setUser = (user) => this.setState({ user })
 
   render() {
-    const { user, playerReady, webSocket } = this.state
+    const { user, playerReady, webSocket, encryptor } = this.state
 
     return (
       <Router>
@@ -46,6 +58,7 @@ export default class App extends Component {
             render={(props) => <RequestPage
               {...props}
               webSocket={webSocket}
+              encryptor={encryptor}
             />}
           />
           <Route
@@ -59,6 +72,7 @@ export default class App extends Component {
               user={user}
               playerReady={playerReady}
               webSocket={webSocket}
+              encryptor={encryptor}
             />}
           />
         </div>

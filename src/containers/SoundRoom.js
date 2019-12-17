@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
-import encryptionConfig from '../utilities/encryptor'
 
 import SpotifyPlayer from '../components/SpotifyPlayer'
 import Playlist from '../components/Playlist'
 import PlaylistBuilder from './PlaylistBuilder'
 import NavBar from '../components/NavBar'
 import SoundRoomRequests from '../components/SoundRoomRequests'
-
-const encryptor = encryptionConfig()
 
 export default class SoundRoom extends Component {
 
@@ -49,7 +46,7 @@ export default class SoundRoom extends Component {
 
   setReferralCode = () => {
     const { soundroom } = this.state
-    const { user } = this.props
+    const { user, encryptor } = this.props
     this.setState({
       referralCode: encryptor.encrypt({
         targetID: user.id,
@@ -152,7 +149,7 @@ export default class SoundRoom extends Component {
     const { soundroom, showPlayer, 
             playlist, currentPage, 
             requests, referralCode } = this.state
-    const { user, playerReady } = this.props
+    const { user, playerReady, encryptor } = this.props
 
     return (
       <section className="soundroom">
@@ -177,6 +174,7 @@ export default class SoundRoom extends Component {
                 user={user}
                 playerReady={playerReady}
                 toggleShowPlayer={this.toggleShowPlayer}
+                encryptor={encryptor}
               />
             : ""
         }
