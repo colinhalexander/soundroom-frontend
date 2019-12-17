@@ -28,7 +28,7 @@ export default class NewSoundRoomForm extends Component {
               })
             }
       
-      fetch("http://localhost:3000/soundrooms", request)
+      fetch("https://soundroom-1.herokuapp.com/soundrooms", request)
         .then(response => response.json())
         .then(response => {
           if (!response.error) {

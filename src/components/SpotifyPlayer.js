@@ -31,7 +31,7 @@ export default class SpotifyPlayer extends Component {
           player = new Spotify.Player({
             name: "Soundroom",
             getOAuthToken: async (callback) => {
-              const accessToken = await fetch(`http://localhost:3000/users/${this.props.user.id}/token`)
+              const accessToken = await fetch(`https://soundroom-1.herokuapp.com/users/${this.props.user.id}/token`)
                 .then(response => response.json())
               callback(encryptor.decrypt(accessToken))
             }

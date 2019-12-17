@@ -73,7 +73,7 @@ export default class SoundRoom extends Component {
     // return if playlist already contains song
     if ((playlist.tracks.items.map(item => item.track)).includes(song)) return
 
-    fetch(`http://localhost:3000/spotify/${user.id}/${playlist.id}/songs`, {
+    fetch(`https://soundroom-1.herokuapp.com/spotify/${user.id}/${playlist.id}/songs`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -108,7 +108,7 @@ export default class SoundRoom extends Component {
     const { user } = this.props,
           { playlist } = this.state 
 
-    fetch(`http://localhost:3000/spotify/${user.id}/${playlist.id}/songs`, {
+    fetch(`https://soundroom-1.herokuapp.com/spotify/${user.id}/${playlist.id}/songs`, {
       method: 'DELETE',
       headers: {
         "Content-Type": "application/json"

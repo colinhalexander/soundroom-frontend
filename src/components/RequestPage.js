@@ -22,8 +22,6 @@ export default class RequestPage extends Component {
           code = urlParams.get('code').replace(/\s/g, '+'),
           referral = await encryptor.decrypt(code)
 
-    console.log(code)
-    console.log(referral)
     this.setState({ referral })
   }
 
@@ -44,7 +42,7 @@ export default class RequestPage extends Component {
     event.preventDefault()
 
     const { query, referral } = this.state
-    fetch(`http://localhost:3000/spotify/${referral.targetID}/search`, {
+    fetch(`https://soundroom-1.herokuapp.com/spotify/${referral.targetID}/search`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"

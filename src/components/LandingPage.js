@@ -7,7 +7,7 @@ import '../stylesheets/LandingPage.css'
 
 export default function LandingPage() {
 
-  const signInWithSpotify = () => window.location.href = "http://localhost:3000/auth"
+  const signInWithSpotify = () => window.location.href = "https://soundroom-1.herokuapp.com/auth"
 
   return (
     <section className="landing-page">

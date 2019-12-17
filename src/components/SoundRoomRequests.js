@@ -46,10 +46,10 @@ export default function SoundRoomRequests({
               </div>
             : <div className="request-link">
               <img src={qrCodeAddress} alt="QR Code" />
-                <a href={`http://localhost:3001/requests?code=${referralCode}`}
+                <a href={`https://soundroom-1.firebaseapp.com/requests?code=${referralCode}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                >{`http://localhost:3001/requests?code=${referralCode}`}</a>
+                >{`https://soundroom-1.firebaseapp.com/requests?code=${referralCode}`}</a>
               </div>
         }
       </div>

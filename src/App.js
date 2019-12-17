@@ -26,7 +26,7 @@ export default class App extends Component {
 
   initializeWebSocket = () => {
     // upgrade to 'wss://' protocol once backend is deployed
-    const webSocket = new window.WebSocket('ws://localhost:3000/')
+    const webSocket = new window.WebSocket('wss://soundroom-1.herokuapp.com/')
 
     webSocket.onopen = () => this.setState({ webSocket })
     webSocket.onclose = () => this.setState({ webSocket: null })

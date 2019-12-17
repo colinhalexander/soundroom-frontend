@@ -14,7 +14,7 @@ export default class UserPage extends Component {
     const { spotifyID } = this.props.match.params
 
     if (!this.props.user) {
-      fetch(`http://localhost:3000/users/${spotifyID}`)
+      fetch(`https://soundroom-1.herokuapp.com/users/${spotifyID}`)
         .then(response => response.json())
         .then(profile => {
           profile.error

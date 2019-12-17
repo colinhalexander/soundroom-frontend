@@ -15,7 +15,7 @@ export default class PlaylistBuilder extends Component {
 
   componentDidMount() {
     if (this.props.user) {
-      fetch(`http://localhost:3000/spotify/${this.props.user.id}/top/songs`)
+      fetch(`https://soundroom-1.herokuapp.com/spotify/${this.props.user.id}/top/songs`)
         .then(response => response.json())
         .then(response => {
           this.updateTopSongs(response.items)
@@ -41,7 +41,7 @@ export default class PlaylistBuilder extends Component {
     const { query, searchSpotify } = this.state
     if (!searchSpotify) return
 
-    fetch(`http://localhost:3000/spotify/${this.props.user.id}/search`, {
+    fetch(`https://soundroom-1.herokuapp.com/spotify/${this.props.user.id}/search`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
