@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import encryptor from 'simple-encryptor'
+import simpleEncryptor from 'simple-encryptor'
 
 import './stylesheets/App.css'
 
@@ -29,7 +29,7 @@ export default class App extends Component {
         .then(response => response.json())
         .then(response => {
           this.setState({
-            encryptor: encryptor({
+            encryptor: simpleEncryptor({
               key: response.key,
               hmac: false,
             })
