@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import encryptor from '../utilities/encryptor'
+import encryptionConfig from '../utilities/encryptor'
 
 import SearchBar from './SearchBar'
 import SearchResults from './SearchResults'
+
+const encryptor = encryptionConfig()
 
 export default class RequestPage extends Component {
 

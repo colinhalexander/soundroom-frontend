@@ -1,7 +1,16 @@
 import encryptor from 'simple-encryptor'
-import firebase from 'firebase-functions'
 
-export default encryptor({
-  key: firebase.config().encryption.key,
-  hmac: false,
-})
+const getKey = async () => {
+  return await fetch("https://soundroom-1.herokuapp.com/encryption")
+    .then(response => response.json())
+    .then(response => response.key)
+}
+
+const configureEncryptor = async () => {
+  return encryptor({
+    key: await getKey(),
+    hmac: false,
+  })
+}
+
+export default configureEncryptor

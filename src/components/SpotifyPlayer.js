@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import encryptor from '../utilities/encryptor'
+import encryptionConfig from '../utilities/encryptor'
 import { makeListFromArray } from '../utilities/string-methods'
 
 import PlayerControls from './PlayerControls'
+
+const encryptor = encryptionConfig()
 
 export default class SpotifyPlayer extends Component {
 

@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import encryptor from '../utilities/encryptor'
+import encryptionConfig from '../utilities/encryptor'
 
 import SpotifyPlayer from '../components/SpotifyPlayer'
 import Playlist from '../components/Playlist'
 import PlaylistBuilder from './PlaylistBuilder'
 import NavBar from '../components/NavBar'
 import SoundRoomRequests from '../components/SoundRoomRequests'
+
+const encryptor = encryptionConfig()
 
 export default class SoundRoom extends Component {
 
